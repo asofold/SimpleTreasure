@@ -5,6 +5,6 @@ version: 0.0.0
 commands:
   simpletreasure:
     description: 'Hide treasures with a simple command, needs configuration.'
-    usage: '/treasure hide <number of tries> <radius> | /treasure <file name> <number of tries> <radius> | /treasure abort | /treasure reload | /treasure reload <file name> | /treasure info'
+    usage: '/treasure hide <number of tries> <radius> | /treasure hide <file name> <number of tries> <radius> | /treasure abort | /treasure reload | /treasure reload <file name> | /treasure info'
     aliases:
     - treasure
