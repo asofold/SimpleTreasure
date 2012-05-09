@@ -127,6 +127,8 @@ public class SimpleTreasure extends JavaPlugin{
 			w = new FileWriter(configFile);
 			BufferedWriter bw = new BufferedWriter(w);
 			bw.write(content);
+			bw.flush();
+			w.flush();
 			w.close();
 			return true;
 		} catch (IOException e) {
