@@ -11,7 +11,8 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
-        <javaElement handleIdentifier="=SimpleTreasure/src"/>
         <file path="/SimpleTreasure/plugin.yml"/>
+        <javaElement handleIdentifier="=SimpleTreasure/src"/>
+        <folder path="/SimpleTreasure/resources"/>
     </selectedElements>
 </jardesc>

@@ -1,0 +1,149 @@
+weight:
+  min: 50
+  max: 1000
+attempts:
+  y: 5
+  xz: 1
+max-add: 30
+p-abort: 0.33
+y-min: 2
+y-max: 255
+neighbours:
+- stone
+- dirt
+- sand
+- sandstone
+- gravel
+- bedrock
+replace:
+- stone
+- dirt
+- sand
+- sandstone
+- gravel
+- bedrock
+treasures:
+  sword1:
+    part: 100
+    weight: 150
+    items:
+      i1:
+        type: iron_sword
+  sword2:
+    part: 40
+    weight: 300
+    items:
+      i1:
+        type: iron_sword
+        enchantments:
+        - DAMAGE_ALL:2
+  iron_chest:
+    part: 30
+    weight: 300
+    items:
+      type: iron_chestplate
+  iron_leggings:
+    part: 30
+    weight: 300
+    items:
+      type: iron_leggings
+  iron_helmet:
+    part: 30
+    weight: 175
+    items:
+      type: iron_helmet
+  iron_boots:
+    part: 30
+    weight: 140
+    items:
+      type: iron_boots
+  iron_axe:
+    part: 30
+    weight: 300
+    y-min: 64
+    items:
+      type: iron_axe
+  iron_pickaxe:
+    part: 35
+    weight: 300
+    items:
+      type: iron_pickaxe
+  cookie:
+    part: 100
+    weight: 20
+    y-max: 50
+    random: true
+    items:
+      i2:
+        type: cookie
+        amount: 8
+  archer:
+    y-min: 80
+    part: 200
+    weight: 200
+    random: true
+    items:
+      i1:
+        type: bow
+      i2:
+        type: arrow
+        amount: 25
+  water1:
+    random: true
+    part: 200
+    weight: 250
+    y-min: 40
+    y-max: 80
+    items:
+      i1:
+        type: sandstone
+        data: '1'
+        amount: 55
+      i2:
+        type: sandstone
+        data: '2'
+        amount: 55
+      i3:
+        type: IRON_HELMET
+        enchantments:
+        - WATER_WORKER
+    replace:
+    - sand
+    neighbours:
+    - sand
+    - '8'
+    - '9'
+    - ice
+    - sandstone
+  water2:
+    part: 15
+    weight: 400
+    y-min: 40
+    y-max: 80
+    items:
+      i3:
+        type: IRON_HELMET
+        enchantments:
+        - WATER_WORKER
+    replace:
+    - sand
+    neighbours:
+    - sand
+    - '8'
+    - '9'
+    - ice
+    - sandstone
+  diamond_deep:
+    items:
+      i1:
+        type: diamond
+    y-max: 40
+    part: 10
+    weight: 100
+  diamond_normal:
+    items:
+      i1:
+        type: diamond
+    part: 1
+    weight: 100
+
