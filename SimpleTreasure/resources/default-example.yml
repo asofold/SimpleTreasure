@@ -32,6 +32,7 @@ treasures:
   sword2:
     part: 40
     weight: 300
+    y-min: 100
     items:
       i1:
         type: iron_sword
@@ -41,40 +42,46 @@ treasures:
     part: 30
     weight: 300
     items:
-      type: iron_chestplate
+      i1:
+        type: iron_chestplate
   iron_leggings:
     part: 30
     weight: 300
     items:
-      type: iron_leggings
+      i1:
+        type: iron_leggings
   iron_helmet:
     part: 30
     weight: 175
     items:
-      type: iron_helmet
+      i1:
+        type: iron_helmet
   iron_boots:
     part: 30
     weight: 140
     items:
-      type: iron_boots
+      i1:
+        type: iron_boots
   iron_axe:
     part: 30
     weight: 300
     y-min: 64
     items:
-      type: iron_axe
+      i1:
+        type: iron_axe
   iron_pickaxe:
     part: 35
     weight: 300
     items:
-      type: iron_pickaxe
+      i1:
+        type: iron_pickaxe
   cookie:
     part: 100
     weight: 20
     y-max: 50
     random: true
     items:
-      i2:
+      i1:
         type: cookie
         amount: 8
   archer:
@@ -90,7 +97,7 @@ treasures:
         amount: 25
   water1:
     random: true
-    part: 200
+    part: 100
     weight: 250
     y-min: 40
     y-max: 80
@@ -103,10 +110,6 @@ treasures:
         type: sandstone
         data: '2'
         amount: 55
-      i3:
-        type: IRON_HELMET
-        enchantments:
-        - WATER_WORKER
     replace:
     - sand
     neighbours:

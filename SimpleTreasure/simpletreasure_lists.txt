@@ -7,7 +7,8 @@ SimpleTreasure lists
 
 *** 0.1.0
 
-
+? allow empty config ?
+? add p-skip (probability to skip the item concerning valid choices, defaults to 0)
 
 CHANGELOG
 -----------------------
