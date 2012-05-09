@@ -30,7 +30,7 @@ treasures:
       i1:
         type: iron_sword
   sword2:
-    part: 40
+    part: 20
     weight: 300
     y-min: 100
     items:
@@ -137,16 +137,61 @@ treasures:
     - ice
     - sandstone
   diamond_deep:
-    items:
-      i1:
-        type: diamond
     y-max: 40
-    part: 10
+    part: 13
     weight: 100
-  diamond_normal:
     items:
       i1:
         type: diamond
-    part: 1
+  diamond_normal:
+    part: 2
     weight: 100
+    items:
+      i1:
+        type: diamond
+  bread:
+    # Finally something common, also creating a big part
+    part: 400
+    weight: 5
+    random: true
+    items:
+      i1:
+        type: bread
+        # No amount is set, for the big part and random arguments.
+  logs0:
+    part: 200
+    weight: 20
+    random: true
+    items:
+      i1:
+        type: log
+        amount: 8
+  logs1:
+    part: 200
+    weight: 20
+    random: true
+    items:
+      i1:
+        type: log
+        data: 1
+        amount: 8
+  logs2:
+    part: 200
+    weight: 20
+    random: true
+    items:
+      i1:
+        type: log
+        data: 2
+        amount: 8
+  logs3:
+    part: 100
+    weight: 20
+    random: true
+    items:
+      i1:
+        type: log
+        data: 3
+        amount: 8
+
 
