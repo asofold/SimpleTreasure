@@ -277,6 +277,12 @@ public class SimpleTreasure extends JavaPlugin{
 		if (settings != null) this.settings = settings;
 	}
 	
+	/**
+	 * Get settings form a configuration file from the SimpleTreasure plugin folder.
+	 * @param sender
+	 * @param fileName
+	 * @return
+	 */
 	public Settings getSettings(CommandSender sender, String fileName) {
 		File file = new File(getDataFolder(), fileName);
 		Settings settings = new Settings(fileName);
@@ -311,6 +317,16 @@ public class SimpleTreasure extends JavaPlugin{
 		onHide(loc.getWorld(), loc.getBlockX(), loc.getBlockZ(), tries, radius, settings, player);
 	}
 	
+	/**
+	 * API method for hiding treasures, this will start a task that will distribute server load over time (!).
+	 * @param world World to hide treasures in.
+	 * @param x X-coordinate of the center.
+	 * @param z Z-coordinate of the center.
+	 * @param tries Number of attempts to hide a chest (depending on settings several heights will be considered at a random x-z position.
+	 * @param radius Radius around center where to hide chests.
+	 * @param settings Settings to apply.
+	 * @param notify CommandSender to send status messages to.
+	 */
 	public void onHide(World world, int x, int z, int tries, int radius, Settings settings, CommandSender notify){
 		if (settings.itemSettings.isEmpty()){
 			if (notify != null) notify.sendMessage("[SimpleTreasure] No treasure defined!");
