@@ -7,18 +7,27 @@ import java.util.Set;
 import me.asofold.simpletreasure.configuration.compatlayer.CompatConfig;
 
 public class BlockSettings {
+	
 	/**
 	 * Chests must be at least at this level.
 	 */
 	public Integer yMin = 0;
+	
 	/**
 	 * Chests must be at most this high.
 	 */
 	public Integer yMax = 255;
+	
 	/**
 	 * These block types must be orthogonally adjactant to the chest.
 	 */
 	public Set<Integer> allowedNeighbours = null;
+	
+	/**
+	 * These blocks must be neighbours.
+	 */
+	public Set<Integer> demandedNeighbours = null;
+	
 	/**
 	 * Only these block types may be replaced by a chest.
 	 */
@@ -38,6 +47,12 @@ public class BlockSettings {
 		else {
 			allowedReplace= new HashSet<Integer>();
 			allowedReplace.addAll(replace);
+		}
+		List<Integer> neighboursMust =  Settings.getIdList(cfg, prefix + "neighbours-must");
+		if (neighboursMust.isEmpty()) demandedNeighbours = null;
+		else {
+			demandedNeighbours= new HashSet<Integer>();
+			demandedNeighbours.addAll(neighboursMust);
 		}
 	}
 

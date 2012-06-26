@@ -141,6 +141,7 @@ public class TreasureHidingTask implements Runnable {
 		final ItemSettings treasure = itemSettings[index];
 		final Set<Integer> replace = (treasure.blockSettings.allowedReplace == null)?settings.defaultBlockSettings.allowedReplace:treasure.blockSettings.allowedReplace;
 		final Set<Integer> neighbours = (treasure.blockSettings.allowedNeighbours == null)?settings.defaultBlockSettings.allowedNeighbours:treasure.blockSettings.allowedNeighbours;
+		final Set<Integer> neighboursMust = (treasure.blockSettings.demandedNeighbours == null)?settings.defaultBlockSettings.demandedNeighbours:treasure.blockSettings.demandedNeighbours;
 		final int yMin = getMinY(treasure);
 		final int yMax = getMaxY(treasure, x, z);
 		
@@ -151,29 +152,55 @@ public class TreasureHidingTask implements Runnable {
 		
 		for (int i = 0; i<attempts; i++){
 			final int y = yMin + random.nextInt(yMax- yMin + 1);
-			if (!isValidChestPos(chunks, x, y, z, replace, neighbours)) continue;
+			if (!isValidChestPos(chunks, x, y, z, replace, neighbours, neighboursMust)) continue;
 			return world.getBlockAt(x, y, z);
 		}
 		return null;
 	}
 	
 	private final boolean isValidChestPos(final Set<Chunk> chunks, final int x, final int y, final int z,
-			final Set<Integer> replace, final Set<Integer> neighbours) {
-		if (!checkId(chunks, x, y, z, replace)) return false;
-		if (!neighbours.contains(world.getBlockTypeIdAt(x, y - 1, z))) return false;
-		if (!neighbours.contains(world.getBlockTypeIdAt(x, y + 1, z))) return false;
-		if (!checkId(chunks, x + 1, y, z, neighbours)) return false;
-		if (!checkId(chunks, x - 1, y, z, neighbours)) return false;
-		if (!checkId(chunks, x, y, z + 1, neighbours)) return false;
-		if (!checkId(chunks, x, y, z - 1, neighbours)) return false;
+			final Set<Integer> replace, final Set<Integer> neighbours, Set<Integer> neighboursMust) {
+		if (!checkId(chunks, x, y, z, replace, null, 0)) return false;
+		final int[] ids = new int[]{world.getBlockTypeIdAt(x, y - 1, z), world.getBlockTypeIdAt(x, y + 1, z), 0, 0, 0, 0};
+		if (!neighbours.contains(ids[0])) return false;
+		if (!neighbours.contains(ids[1])) return false;
+		if (!checkId(chunks, x + 1, y, z, neighbours, ids, 2)) return false;
+		if (!checkId(chunks, x - 1, y, z, neighbours, ids, 3)) return false;
+		if (!checkId(chunks, x, y, z + 1, neighbours, ids, 4)) return false;
+		if (!checkId(chunks, x, y, z - 1, neighbours, ids, 5)) return false;
+		// at this point all involved chunks are loaded.
+		if (neighboursMust != null){
+			boolean found = false;
+			for (int i = 0; i < ids.length; i++){
+				if (neighboursMust.contains(ids[i])){
+					found = true;
+					break;
+				}
+			}
+			if (!found) return false;
+		}
 		return true;
 	}
 
-	private final boolean checkId(final Set<Chunk> chunks, final int x, final int y, final int z, Set<Integer> allowed){
+	/**
+	 * Check id of position against set, load chunks if not loaded and add to chunks.
+	 * @param chunks
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @param allowed
+	 * @param ids 
+	 * @param index 
+	 * @return
+	 */
+	private final boolean checkId(final Set<Chunk> chunks, final int x, final int y, final int z, final Set<Integer> allowed, final int[] ids, final int index){
 		final Chunk chunk = world.getChunkAt(x,z);
 		if (!chunk.isLoaded()) chunk.load();
 		chunks.add(chunk);
-		return allowed.contains(world.getBlockTypeIdAt(x, y, z));
+		final int id = world.getBlockTypeIdAt(x, y, z);
+		final boolean res = allowed.contains(id);
+		if (ids != null) ids[index] = id;
+		return res;
 	}
 	
 	private int getMinY(ItemSettings treasure){
@@ -242,11 +269,12 @@ public class TreasureHidingTask implements Runnable {
 			final ItemSettings treasure = itemSettings[i];
 			final Set<Integer> replace = (treasure.blockSettings.allowedReplace == null)?settings.defaultBlockSettings.allowedReplace:treasure.blockSettings.allowedReplace;
 			final Set<Integer> neighbours = (treasure.blockSettings.allowedNeighbours == null)?settings.defaultBlockSettings.allowedNeighbours:treasure.blockSettings.allowedNeighbours;
+			final Set<Integer> neighboursMust = (treasure.blockSettings.demandedNeighbours == null)?settings.defaultBlockSettings.demandedNeighbours:treasure.blockSettings.demandedNeighbours;
 			final int yMin = getMinY(treasure);
 			final int yMax = getMaxY(treasure, x, z);
 			if (yMin > yMax) continue;
 			if (yMin > y || yMax < y) continue;
-			if (isValidChestPos(chunks, x, y, z, replace, neighbours)) valid.add(treasure);
+			if (isValidChestPos(chunks, x, y, z, replace, neighbours, neighboursMust)) valid.add(treasure);
 		}
 		return valid;
 	}

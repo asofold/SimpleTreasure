@@ -52,7 +52,7 @@ treasures:
     - stone
     - obsidian
     - '11'
-  # leggings will probably rather be found in jungles.
+  # Leggings will be found in high woods under trees.
   leggings:
     part: 50
     weight: 300
@@ -61,12 +61,20 @@ treasures:
       i1:
         type: chainmail_leggings
     replace:
+    - dirt
+    - grass
+    - stone
+    - gravel
+    - sand
     - log
     neighbours:
     - gravel
     - stone
     - sand
     - grass
+    - dirt
+    - log
+    neighbours-must:
     - log
   chestplate:
     part: 40

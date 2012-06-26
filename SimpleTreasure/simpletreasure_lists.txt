@@ -8,8 +8,9 @@ SimpleTreasure lists
 
 ?(add) named items + possibility to reference them.
  
+ ? option for block settings as blacklists ?
+? option for "relative to highest block" ?
  
- * 0.2.0
 !(add) named block sets + possibility to reference those.
 
 ? allow empty config (set to null initially)?
@@ -20,13 +21,16 @@ SimpleTreasure lists
 !(add) nether and end treasures
 
 *** 
-!(add) option for must-have neightbours: neighbours-must:
 
+
+***
+? save examples into an examples folder ? (+overwrite + get rid of -example name?)
 
 CHANGELOG
 -----------------------
 
 (0.2.0)
+- (add) Option for must-have (one of...) neighbours in block-settings: neighbours-must
 - (add) Command + API method that accepts world + x + z to specify the center, thus does not need a player. 
 - (add) More example configuration files (probably not finished).
 - (add) Oxygen enchantment (respiration) to iron helmet for default-example.
