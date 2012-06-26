@@ -3,8 +3,9 @@ SimpleTreasure lists
 
 
 ? option: call gc after finish ? [maybe keep track of actually loaded chunks]
-?(add) Must have blocks ? [either a general list or a section with entries like up-2: water] 
+?(add) Must have blocks: another map for direction (+distance?) -> allowed block type (s)
 
+? more simple configuration ?
 
 ?(add) named items + possibility to reference them.
  
@@ -18,13 +19,12 @@ SimpleTreasure lists
 
 
 ***
-!(add) nether and end treasures
+?(add) nether and end treasures
 
 *** 
 
+? overwrite files in the examples folder always ? -> nah
 
-***
-? save examples into an examples folder ? (+overwrite + get rid of -example name?)
 
 CHANGELOG
 -----------------------
