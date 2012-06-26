@@ -15,6 +15,7 @@ import me.asofold.simpletreasure.configuration.compatlayer.CompatConfig;
 import me.asofold.simpletreasure.configuration.compatlayer.NewConfig;
 import me.asofold.simpletreasure.tasks.TreasureHidingTask;
 
+import org.bukkit.Location;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -33,6 +34,8 @@ public class SimpleTreasure extends JavaPlugin{
 	 */
 	public static String[] exampleFileNames = new String[]{
 		"default-example.yml",
+		"chainmail-example.yml",
+		"epic-example.yml",
 	};
 	
 	Settings settings = new Settings("<none>");
@@ -245,14 +248,18 @@ public class SimpleTreasure extends JavaPlugin{
 	}
 	
 	private void onHide(Player player, int tries, int radius, Settings settings) {
+		onHide(player.getLocation(), tries, radius, settings, player);
+	}
+	
+	public void onHide(Location loc, int tries, int radius, Settings settings, CommandSender notify){
 		if (settings.itemSettings.isEmpty()){
-			player.sendMessage("[SimpleTreasure] No treasure defined!");
+			if (notify != null) notify.sendMessage("[SimpleTreasure] No treasure defined!");
 			return;
 		}
 		// Start a new hiding task:
-		TreasureHidingTask task = new TreasureHidingTask(player.getLocation(), tries, radius, settings, player);
-		if (!task.register(this)) player.sendMessage("[SimpleTreasure] Failed to start the task for hiding the treasures.");
-		else player.sendMessage("[SimpleTreasure] Started the task for hiding the treasures ("+settings.fileName+").");
+		TreasureHidingTask task = new TreasureHidingTask(loc, tries, radius, settings, notify);
+		if (!task.register(this) && notify != null) notify.sendMessage("[SimpleTreasure] Failed to start the task for hiding the treasures.");
+		else if (notify != null) notify.sendMessage("[SimpleTreasure] Started the task for hiding the treasures ("+settings.fileName+").");
 	}
 	
 	public static boolean checkPlayer(CommandSender sender){
