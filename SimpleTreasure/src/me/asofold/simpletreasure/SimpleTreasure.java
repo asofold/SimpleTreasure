@@ -34,9 +34,9 @@ public class SimpleTreasure extends JavaPlugin{
 	 * Example names to be taken from the jar, if not existent.
 	 */
 	public static String[] exampleFileNames = new String[]{
-		"default-example.yml",
-		"chainmail-example.yml",
-		"epic-example.yml",
+		"default.yml",
+		"chainmail.yml",
+		"epic.yml",
 	};
 	
 	Settings settings = new Settings("<none>");
@@ -72,13 +72,15 @@ public class SimpleTreasure extends JavaPlugin{
 		File dataFolder = getDataFolder();
 		File configFile = new File(dataFolder, "config.yml");
 		if (!configFile.exists()){
-			String content = fetchContent("default-example.yml");
+			String content = fetchContent("default.yml");
 			if (content != null){
 				if (writeFile(configFile, content))	System.out.println("[SimpleTreasure] Added example configuration: config.yml");
 			}
 		}
+		File examplesFolder = new File(dataFolder, "examples");
+		if (!examplesFolder.exists()) examplesFolder.mkdirs();
 		for (String name : exampleFileNames){
-			File file = new File(dataFolder, name);
+			File file = new File(examplesFolder, name);
 			if (!file.exists()){
 				String content = fetchContent(name);
 				if (content != null){
