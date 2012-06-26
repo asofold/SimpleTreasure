@@ -12,7 +12,6 @@ import me.asofold.simpletreasure.configuration.Settings;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -44,12 +43,12 @@ public class TreasureHidingTask implements Runnable {
 	private final ItemSettings[] itemSettings;
 	private final int[] parts;
 	
-	public TreasureHidingTask(Location location, int tries, int radius,
+	public TreasureHidingTask(World world, int x, int z, int tries, int radius,
 			Settings settings, CommandSender notify) {
 		this.settings = settings;
-		world = location.getWorld();
-		cX = location.getBlockX();
-		cZ = location.getBlockZ();
+		this.world = world;
+		cX = x;
+		cZ = z;
 		this.tries = tries;
 		this.radius = radius;
 		

@@ -1,10 +1,10 @@
 name: SimpleTreasure
 main: me.asofold.simpletreasure.SimpleTreasure
-version: 0.1.0
+version: 0.1.1
 
 commands:
   simpletreasure:
     description: 'Hide treasures with a simple command, needs configuration.'
-    usage: '/treasure hide <number of tries> <radius> | /treasure hide <file name> <number of tries> <radius> | /treasure abort | /treasure reload | /treasure reload <file name> | /treasure info'
+    usage: '/treasure hide <number of tries> <radius> | /treasure hide <file name> <number of tries> <radius> | /treasure hide <file name> <number of tries> <radius> <world> <x> <z> | /treasure abort | /treasure reload | /treasure reload <file name> | /treasure info'
     aliases:
     - treasure

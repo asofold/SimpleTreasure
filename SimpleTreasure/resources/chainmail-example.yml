@@ -1,0 +1,84 @@
+# Intended to be a rare treasure, however the hiding conditions are such that 
+#   given a higher radius a higher number of tries might be necessary (subject to testing).
+weight:
+  min: 300
+  max: 300
+attempts:
+  y: 5
+  xz: 1
+max-add: 1
+p-abort: 1.0
+y-min: 2
+y-max: 255
+neighbours:
+- stone
+- dirt
+- sand
+- sandstone
+- gravel
+- bedrock
+replace:
+- stone
+- dirt
+- sand
+- sandstone
+- gravel
+- bedrock
+treasures:
+  boots:
+    part: 80
+    weight: 300
+    y-max: 60
+    items:
+      i1:
+        type: chainmail_boots
+    replace:
+    - gravel
+    neighbours:
+    - gravel
+    - '11'
+    - obsidian
+  helmet:
+    part: 70
+    weight: 300
+    items:
+      i1:
+        type: chainmail_helmet
+    replace:
+    - iron_ore
+    neighbours:
+    - iron_ore
+    - gold_ore
+    - stone
+    - obsidian
+    - '11'
+  # leggings will probably rather be found in jungles.
+  leggings:
+    part: 50
+    weight: 300
+    y-min: 80
+    items:
+      i1:
+        type: chainmail_leggings
+    replace:
+    - log
+    neighbours:
+    - gravel
+    - stone
+    - sand
+    - grass
+    - log
+  chestplate:
+    part: 40
+    weight: 300
+    y-max: 8
+    items:
+      i1:
+        type: chainmail_chestplate
+    replace:
+    - '11'
+    neighbours:
+    - bedrock
+    - '11'
+    - obsidian
+    - stone

@@ -5,13 +5,31 @@ SimpleTreasure lists
 ? option: call gc after finish ? [maybe keep track of actually loaded chunks]
 ?(add) Must have blocks ? [either a general list or a section with entries like up-2: water] 
 
-*** 0.1.0
 
-? allow empty config ?
+?(add) named items + possibility to reference them.
+ 
+ 
+ * 0.2.0
+!(add) named block sets + possibility to reference those.
+
+? allow empty config (set to null initially)?
 ? add p-skip (probability to skip the item concerning valid choices, defaults to 0)
+
+
+***
+!(add) nether and end treasures
+
+*** 
+!(add) option for must-have neightbours: neighbours-must:
+
 
 CHANGELOG
 -----------------------
+
+(0.2.0)
+- (add) Command + API method that accepts world + x + z to specify the center, thus does not need a player. 
+- (add) More example configuration files (probably not finished).
+- (add) Oxygen enchantment (respiration) to iron helmet for default-example.
 
 (0.1.0)
 - (add) Read example file(s) from the jar.

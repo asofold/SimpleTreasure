@@ -1,0 +1,68 @@
+# This example is for very rare treasures, but the hiding conditions are simple to allow them to appear almost anywhere,
+#   so this should be used with a lower number of tries.
+weight:
+  min: 50
+  max: 1000
+attempts:
+  y: 5
+  xz: 1
+max-add: 5
+p-abort: 0.33
+y-min: 2
+y-max: 255
+# Replace materials as if dug in.
+replace:
+- dirt
+- sand
+- gravel
+neighbours:
+- stone
+- dirt
+- sand
+- sandstone
+- gravel
+- bedrock
+- grass
+- log
+treasures:
+  iron:
+    part: 300
+    weight: 150
+    random: true
+    items:
+      i1:
+        type: iron_ingot
+        amount: 192
+  gold:
+    part: 200
+    weight: 150
+    random: true
+    items:
+      i1:
+        type: gold_ingot
+        amount: 80
+  diamond:
+    part: 100
+    weight: 230
+    random: true
+    items:
+      i1:
+        type: diamond
+        amount: 16
+  pick1:
+    part: 20
+    weight: 501
+    items:
+      i1:
+        type: diamond_pickaxe
+        enchantments:
+        - DIG_SPEED:5
+  pick2:
+    part: 20
+    weight: 501
+    items:
+      i1:
+        type: diamond_pickaxe
+        enchantments:
+        - LOOT_BONUS_BLOCKS:3
+# To be extended ...

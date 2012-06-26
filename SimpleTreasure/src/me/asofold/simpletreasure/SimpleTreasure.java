@@ -17,6 +17,7 @@ import me.asofold.simpletreasure.tasks.TreasureHidingTask;
 
 import org.bukkit.Location;
 import org.bukkit.Server;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -205,6 +206,64 @@ public class SimpleTreasure extends JavaPlugin{
 			onHide( (Player) sender, tries, radius, settings);
 			return true;
 		}
+		else if (cmd.equals("hide") && (len == 6 || len == 7)){
+			// Hide for any CommandSender (including null):
+			if (sender != null && !checkPerm(sender, "simpletreasure.hide")) return true;
+			int checkIndex;
+			Settings settings;
+			if (len == 6){
+				checkIndex = 1;
+				settings = this.settings;
+			}
+			else{
+				checkIndex = 2;
+				settings = getSettings(sender, args[1].trim());
+				if (settings == null) return true;
+			}
+			int tries = -1;
+			try{
+				tries = Integer.parseInt(args[checkIndex]);
+			}
+			catch (NumberFormatException e){
+			}
+			if (tries <= 0){
+				sender.sendMessage("[SimpleTreasure] Bad number (tries): " + tries);
+				return false;
+			}
+			int radius = -1;
+			try{
+				radius = Integer.parseInt(args[checkIndex + 1]);
+			}
+			catch (NumberFormatException e){
+			}
+			if (radius < 1){
+				sender.sendMessage("[SimpleTreasure] Bad number (radius): " + tries);
+				return false;
+			}
+			World world = getServer().getWorld(args[checkIndex + 2]);
+			if (world == null){
+				sender.sendMessage("[SimpleTreasure] Bad world: " + args[checkIndex + 2]);
+				return false;
+			}
+			Integer x = null;
+			try{
+				x = Integer.parseInt(args[checkIndex + 3]);
+			}
+			catch (NumberFormatException exc){
+				sender.sendMessage("[SimpleTreasure] Bad x-coordinate: " + args[checkIndex + 3]);
+				return false;
+			}
+			Integer z = null;
+			try{
+				z = Integer.parseInt(args[checkIndex + 4]);
+			}
+			catch (NumberFormatException exc){
+				sender.sendMessage("[SimpleTreasure] Bad z-coordinate: " + args[checkIndex + 4]);
+				return false;
+			}
+			onHide(world, x, z, tries, radius, settings, sender);
+			return true;
+		}
 		return false;
 	}
 
@@ -248,16 +307,17 @@ public class SimpleTreasure extends JavaPlugin{
 	}
 	
 	private void onHide(Player player, int tries, int radius, Settings settings) {
-		onHide(player.getLocation(), tries, radius, settings, player);
+		Location loc = player.getLocation();
+		onHide(loc.getWorld(), loc.getBlockX(), loc.getBlockZ(), tries, radius, settings, player);
 	}
 	
-	public void onHide(Location loc, int tries, int radius, Settings settings, CommandSender notify){
+	public void onHide(World world, int x, int z, int tries, int radius, Settings settings, CommandSender notify){
 		if (settings.itemSettings.isEmpty()){
 			if (notify != null) notify.sendMessage("[SimpleTreasure] No treasure defined!");
 			return;
 		}
 		// Start a new hiding task:
-		TreasureHidingTask task = new TreasureHidingTask(loc, tries, radius, settings, notify);
+		TreasureHidingTask task = new TreasureHidingTask(world, x, z, tries, radius, settings, notify);
 		if (!task.register(this) && notify != null) notify.sendMessage("[SimpleTreasure] Failed to start the task for hiding the treasures.");
 		else if (notify != null) notify.sendMessage("[SimpleTreasure] Started the task for hiding the treasures ("+settings.fileName+").");
 	}
