@@ -25,9 +25,13 @@ SimpleTreasure lists
 
 ? overwrite files in the examples folder always ? -> nah
 
+!(bugfix) Allow replacing the highest air block by a chest if air is selected (or put it in anyway)!
+!(add) Add restricting paths to below plugin folder !
 
 CHANGELOG
 -----------------------
+(0.2.1)
+- (update) config: compatlayer
 
 (0.2.0)
 - (add) Option for must-have (one of...) neighbours in block-settings: neighbours-must
