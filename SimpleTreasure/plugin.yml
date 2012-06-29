@@ -1,6 +1,6 @@
 name: SimpleTreasure
 main: me.asofold.simpletreasure.SimpleTreasure
-version: 0.2.0
+version: 0.2.1
 
 commands:
   simpletreasure:
