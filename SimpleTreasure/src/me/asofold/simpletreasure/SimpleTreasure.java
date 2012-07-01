@@ -1,17 +1,10 @@
 package me.asofold.simpletreasure;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import me.asofold.simpletreasure.configuration.Settings;
 import me.asofold.simpletreasure.configuration.compatlayer.CompatConfig;
+import me.asofold.simpletreasure.configuration.compatlayer.ConfigUtil;
 import me.asofold.simpletreasure.configuration.compatlayer.NewConfig;
 import me.asofold.simpletreasure.tasks.TreasureHidingTask;
 
@@ -72,9 +65,9 @@ public class SimpleTreasure extends JavaPlugin{
 		File dataFolder = getDataFolder();
 		File configFile = new File(dataFolder, "config.yml");
 		if (!configFile.exists()){
-			String content = fetchContent("default.yml");
+			String content = ConfigUtil.fetchResource(SimpleTreasure.class, "resources/default.yml");
 			if (content != null){
-				if (writeFile(configFile, content))	System.out.println("[SimpleTreasure] Added example configuration: config.yml");
+				if (ConfigUtil.writeFile(configFile, content))	System.out.println("[SimpleTreasure] Added example configuration: config.yml");
 			}
 		}
 		File examplesFolder = new File(dataFolder, "examples");
@@ -82,72 +75,15 @@ public class SimpleTreasure extends JavaPlugin{
 		for (String name : exampleFileNames){
 			File file = new File(examplesFolder, name);
 			if (!file.exists()){
-				String content = fetchContent(name);
+				String content = ConfigUtil.fetchResource(SimpleTreasure.class, "resources/"+name);
 				if (content != null){
-					if (writeFile(file, content)) System.out.println("[SimpleTreasure] Added example configuration: " + name);
+					if (ConfigUtil.writeFile(file, content)) System.out.println("[SimpleTreasure] Added example configuration: " + name);
 				}
 			}
 		}
 	}
 
-	private String fetchContent(String name) {
-		Class<SimpleTreasure> clazz = SimpleTreasure.class;
-		String className = clazz.getSimpleName() + ".class";
-		String classPath = clazz.getResource(className).toString();
-		if (!classPath.startsWith("jar")) return null;
-		String path = classPath.substring(0, classPath.lastIndexOf("!") + 1) + "/resources/"+name;
-		try {
-			URL url = new URL(path);
-			try {
-				Object obj  = url.getContent();
-				if (obj instanceof InputStream){
-					BufferedReader r = new BufferedReader(new InputStreamReader((InputStream) obj));
-					StringBuilder builder = new StringBuilder();
-					String last = r.readLine();
-					while (last != null){
-						builder.append(last);
-						builder.append("\n"); // does not hurt if one too many.
-						last = r.readLine();
-					}
-					return builder.toString();
-				}
-				else return null;
-			} catch (IOException e) {
-				return null;
-			}
-		} catch (MalformedURLException e) {
-		}
-		return null;
-	}
 
-	private boolean writeFile(File configFile, String content) {
-		if(!configFile.exists()){
-			try {
-				configFile.createNewFile();
-			} catch (IOException e) {
-				return false;
-			}
-		}
-		FileWriter w = null;
-		try {
-			w = new FileWriter(configFile);
-			BufferedWriter bw = new BufferedWriter(w);
-			bw.write(content);
-			bw.flush();
-			w.flush();
-			w.close();
-			return true;
-		} catch (IOException e) {
-			if (w!=null){
-				try {
-					w.close();
-				} catch (IOException e2) {
-					e.printStackTrace();
-				}
-			}
-			return false;
-		}	
-	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command,

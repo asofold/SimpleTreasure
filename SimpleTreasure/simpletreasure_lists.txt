@@ -30,6 +30,11 @@ SimpleTreasure lists
 
 CHANGELOG
 -----------------------
+
+(0.2.2)
+- (refactor) Use compatlayer methods now.
+- (update) compatlayer
+
 (0.2.1)
 - (update) config: compatlayer
 
