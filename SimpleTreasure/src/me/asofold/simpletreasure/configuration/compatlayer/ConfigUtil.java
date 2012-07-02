@@ -275,7 +275,7 @@ public class ConfigUtil {
 	 * @param folderPart
 	 * @return
 	 */
-	public static <T> String fetchResource( Class<T> clazz, String path) {
+	public static String fetchResource(Class<?> clazz, String path) {
 		String className = clazz.getSimpleName() + ".class";
 		String classPath = clazz.getResource(className).toString();
 		if (!classPath.startsWith("jar")) return null;

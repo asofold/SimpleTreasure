@@ -4,7 +4,7 @@ import java.io.File;
 
 public class CompatConfigFactory {
 	
-	public static final String version = "1.1.0";
+	public static final String version = "1.1.1";
 	
 	/**
 	 * Attempt to get a working file configuration.<br>
