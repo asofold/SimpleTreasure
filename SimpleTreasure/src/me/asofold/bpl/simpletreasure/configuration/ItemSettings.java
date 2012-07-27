@@ -1,9 +1,9 @@
-package me.asofold.simpletreasure.configuration;
+package me.asofold.bpl.simpletreasure.configuration;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import me.asofold.simpletreasure.configuration.compatlayer.CompatConfig;
+import me.asofold.bpl.simpletreasure.configuration.compatlayer.CompatConfig;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

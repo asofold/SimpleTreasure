@@ -31,6 +31,9 @@ SimpleTreasure lists
 CHANGELOG
 -----------------------
 
+(1.0.0)
+- (CHANGE) Packet naming.
+
 (0.2.2)
 - (refactor) Use compatlayer methods now.
 - (update) compatlayer

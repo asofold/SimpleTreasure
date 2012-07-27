@@ -1,4 +1,4 @@
-package me.asofold.simpletreasure.tasks;
+package me.asofold.bpl.simpletreasure.tasks;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import me.asofold.simpletreasure.configuration.ItemSettings;
-import me.asofold.simpletreasure.configuration.Settings;
+import me.asofold.bpl.simpletreasure.configuration.ItemSettings;
+import me.asofold.bpl.simpletreasure.configuration.Settings;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;

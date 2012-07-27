@@ -1,10 +1,10 @@
-package me.asofold.simpletreasure.configuration;
+package me.asofold.bpl.simpletreasure.configuration;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import me.asofold.simpletreasure.configuration.compatlayer.CompatConfig;
+import me.asofold.bpl.simpletreasure.configuration.compatlayer.CompatConfig;
 
 public class BlockSettings {
 	

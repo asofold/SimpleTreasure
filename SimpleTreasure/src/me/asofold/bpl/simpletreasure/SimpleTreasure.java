@@ -1,12 +1,12 @@
-package me.asofold.simpletreasure;
+package me.asofold.bpl.simpletreasure;
 
 import java.io.File;
 
-import me.asofold.simpletreasure.configuration.Settings;
-import me.asofold.simpletreasure.configuration.compatlayer.CompatConfig;
-import me.asofold.simpletreasure.configuration.compatlayer.ConfigUtil;
-import me.asofold.simpletreasure.configuration.compatlayer.NewConfig;
-import me.asofold.simpletreasure.tasks.TreasureHidingTask;
+import me.asofold.bpl.simpletreasure.configuration.Settings;
+import me.asofold.bpl.simpletreasure.configuration.compatlayer.CompatConfig;
+import me.asofold.bpl.simpletreasure.configuration.compatlayer.ConfigUtil;
+import me.asofold.bpl.simpletreasure.configuration.compatlayer.NewConfig;
+import me.asofold.bpl.simpletreasure.tasks.TreasureHidingTask;
 
 import org.bukkit.Location;
 import org.bukkit.Server;

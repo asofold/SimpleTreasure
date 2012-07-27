@@ -1,4 +1,4 @@
-package me.asofold.simpletreasure.configuration.compatlayer;
+package me.asofold.bpl.simpletreasure.configuration.compatlayer;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
